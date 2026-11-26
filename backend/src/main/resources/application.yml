@@ -1,0 +1,85 @@
+# =====================================================================
+# PoliRestaurante - configuracion
+# Los valores sensibles se leen de VARIABLES DE ENTORNO (RNF15): en el
+# servidor se definen en Tomcat\bin\setenv.bat (ver docs/DESPLIEGUE.md).
+# Pasar a otro servidor = cambiar solo estas variables, no el codigo.
+# =====================================================================
+spring:
+  application:
+    name: polirestaurante
+  datasource:
+    # Nodo "MySQL 8.0 - DBServer" en el MISMO servidor (ADR-005) -> localhost
+    url: ${DB_URL:jdbc:mysql://localhost:3306/DB_Polirestaurante?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Bogota&characterEncoding=UTF-8}
+    username: ${DB_USER:polirestaurante_app}
+    password: ${DB_PASSWORD:}
+    hikari:
+      # RNF18: pool de conexiones para 20 usuarios concurrentes
+      maximum-pool-size: 15
+      minimum-idle: 3
+      connection-timeout: 10000
+  jpa:
+    # El esquema lo crean los scripts de /database; Hibernate no lo modifica
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: America/Bogota
+  jackson:
+    time-zone: America/Bogota
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+logging:
+  level:
+    root: INFO
+    com.polirestaurante: INFO
+
+polirestaurante:
+  jwt:
+    # OBLIGATORIO en produccion: variable JWT_SECRET de 32+ caracteres
+    secret: ${JWT_SECRET:solo-para-desarrollo-cambie-esta-clave-0123456789}
+    expiracion-minutos: 30
+  impuesto:
+    nombre: Impoconsumo
+    porcentaje: 8          # incluido en el precio de venta
+  # ---------------------------------------------------------------
+  # Catalogo de promociones (RF22, RF23, CU-CAJ-002).
+  # No hay tabla de promociones en el modelo y no se crean tablas,
+  # por eso se administran aqui. Cambios -> reiniciar la aplicacion.
+  #   categoria-id: opcional, limita el descuento a esa categoria
+  #   dias-semana:  opcional, MONDAY..SUNDAY
+  # ---------------------------------------------------------------
+  promociones:
+    - codigo: MARTES10
+      nombre: Martes de amigos 10%
+      descripcion: 10 % de descuento en toda la cuenta los martes
+      porcentaje: 10
+      dias-semana: [TUESDAY]
+      fecha-inicio: "2026-01-01"
+      fecha-fin: "2026-12-31"
+    - codigo: HAMBURGUESA15
+      nombre: Semana de la hamburguesa
+      descripcion: 15 % en hamburguesas
+      porcentaje: 15
+      categoria-id: 2
+      fecha-inicio: "2026-01-01"
+      fecha-fin: "2027-06-30"
+    - codigo: POSTRE20
+      nombre: Postre feliz
+      descripcion: 20 % en postres, todos los dias
+      porcentaje: 20
+      categoria-id: 5
+    - codigo: EMPLEADO5
+      nombre: Convenio empresarial 5%
+      descripcion: Convenio con empresas vecinas, 5 % en toda la cuenta
+      porcentaje: 5
