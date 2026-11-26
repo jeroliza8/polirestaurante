@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoliRestaurante · Administrador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/administrador.css">
+</head>
+<body class="admin-theme">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sb-brand">
+        <div>
+          <strong>PoliRestaurante</strong>
+          <small>Panel Administrativo</small>
+        </div>
+      </div>
+      <nav id="menu" class="sb-menu" role="tablist" aria-label="Menú principal"></nav>
+      <div class="sb-user">
+        <span id="user-info" hidden></span>
+        <span id="rol-badge" hidden></span>
+        <button id="logout" class="btn btn-ghost btn-sm btn-logout">Salir</button>
+      </div>
+    </aside>
+
+    <div class="content">
+      <header class="top"><span id="fecha-hoy"></span></header>
+      <div id="migas" class="migas"></div>
+      <main id="panel" class="panel"></main>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="print-area"></div>
+
+  <script type="module">
+    import { iniciarPagina, moduloPendiente } from "./js/shell.js";
+    import * as vista from "./js/views/admin.js";
+
+    const de = id => vista.tabs.find(t => t.id === id).render;
+    iniciarPagina({
+      rol: "ADMINISTRADOR",
+      raiz: "",
+      inicial: "reportes",
+      menu: [
+        { id: "reportes", label: "Reportes de Ventas", icono: "", render: de("reportes") },
+        { id: "mesas", label: "Gestión de Mesas", icono: "", render: de("mesas") },
+        { id: "usuarios", label: "Gestión de Usuarios", icono: "", render: de("usuarios") },
+        { id: "menu", label: "Carta / Menú", icono: "", render: de("menu") },
+        { id: "inventario", label: "Inventario", icono: "", render: de("inventario") },
+        { id: "proveedores", label: "Proveedores", icono: "", render: de("proveedores") },
+      ]
+    });
+  </script>
+</body>
+</html>

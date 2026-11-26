@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoliRestaurante</title>
+  <!-- Fuentes: Poppins, Glacial Indifference y respaldo geométrico para TT Hops -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="login-page">
+  <!-- Inicio de sesion (RF37, RF38) -->
+  <section id="login-view" class="login-view">
+    <div class="login-brand-top">PoliRestaurante</div>
+
+    <!-- Círculo #172554 hecho en CSS + tu imagen chef.png encima -->
+    <div class="chef-circle" aria-hidden="true">
+      <img src="img/chef.png" alt="Chef PoliRestaurante">
+    </div>
+
+    <div class="login-layout">
+      <div class="login-spacer"></div>
+
+      <form id="login-form" class="login-card" autocomplete="on">
+        <h1 class="login-title">PANEL DE<br>GESTIÓN</h1>
+        <h2 class="login-subtitle">Bienvenido</h2>
+        <p class="login-desc">Ingresa tus credenciales para continuar</p>
+
+        <label>Usuario
+          <input id="login-user" name="username" autocomplete="username" required maxlength="50">
+        </label>
+
+        <label>Contraseña
+          <input id="login-pass" name="password" type="password" autocomplete="current-password" required maxlength="72">
+        </label>
+
+        <div class="login-actions">
+          <button type="submit" class="btn-login">Ingresar</button>
+        </div>
+        <p id="login-msg" class="form-error" role="alert"></p>
+      </form>
+    </div>
+  </section>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

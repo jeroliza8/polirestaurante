@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoliRestaurante · Proveedor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/proveedor.css">
+</head>
+<body class="proveedor-theme">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sb-brand">
+        <div>
+          <strong>PoliRestaurante</strong>
+          <small>Portal del Proveedor</small>
+        </div>
+      </div>
+      <nav id="menu" class="sb-menu" role="tablist" aria-label="Menú principal"></nav>
+      <div class="sb-user">
+        <span id="user-info" hidden></span>
+        <span id="rol-badge" hidden></span>
+        <button id="logout" class="btn btn-ghost btn-sm btn-logout">Salir</button>
+      </div>
+    </aside>
+
+    <div class="content">
+      <header class="top"><span id="fecha-hoy"></span></header>
+      <div id="migas" class="migas"></div>
+      <main id="panel" class="panel"></main>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="print-area"></div>
+
+  <script type="module">
+    import { iniciarPagina } from "./js/shell.js";
+    import * as vista from "./js/views/proveedor.js";
+
+    iniciarPagina({
+      rol: "PROVEEDOR",
+      raiz: "Proveedor",
+      menu: vista.tabs.map(t => ({ ...t, icono: "" }))
+    });
+  </script>
+</body>
+</html>

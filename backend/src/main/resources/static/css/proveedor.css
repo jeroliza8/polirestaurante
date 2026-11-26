@@ -1,0 +1,213 @@
+/* PoliRestaurante - Proveedor */
+:root {
+  --acento: #3b82f6;
+  --acento-soft: rgba(59, 130, 246, .15);
+}
+
+body.proveedor-theme {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg); /* #0b1120 */
+  color: var(--text);    /* #e6ebf5 */
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface); /* #111a2e */
+  border-right: 1px solid var(--border); /* #24314d */
+  padding: 1.1rem .8rem;
+}
+
+.sb-brand {
+  display: flex;
+  align-items: center;
+  padding: .2rem .5rem 1.1rem;
+}
+
+.sb-brand strong {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.sb-brand small {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  color: var(--muted);
+  font-size: .78rem;
+  margin-top: .1rem;
+}
+
+/* ---------- Menú lateral con iconos PNG y separadores ---------- */
+.sb-menu {
+  display: grid;
+  gap: .2rem;
+  align-content: start;
+  flex: 1;
+  overflow-y: auto;
+  padding-top: .6rem;
+  border-top: 1px solid var(--border);
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(36, 49, 77, .55);
+  color: var(--muted);
+  padding: .65rem .8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: .88rem;
+}
+
+.sb-item:last-child {
+  border-bottom: 0;
+}
+
+.sb-item:hover {
+  color: var(--text);
+  background: var(--surface-2); /* #17223a */
+}
+
+.sb-item:focus-visible {
+  outline: 2px solid var(--acento);
+}
+
+.sb-item.active {
+  color: #fff;
+  font-weight: 500;
+  background: var(--acento-soft);
+  box-shadow: inset 3px 0 0 var(--acento);
+}
+
+/* Iconos PNG */
+.sb-ico {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: inline-block;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: .85;
+}
+
+.sb-item.active .sb-ico,
+.sb-item:hover .sb-ico {
+  opacity: 1;
+}
+
+/* Asignación de imágenes PNG en /img/ según orden de tabs en proveedor.js */
+.sb-menu .sb-item:nth-child(1) .sb-ico { background-image: url('../img/solicitudes.png'); }
+.sb-menu .sb-item:nth-child(2) .sb-ico { background-image: url('../img/entregas.png'); }
+.sb-menu .sb-item:nth-child(3) .sb-ico { background-image: url('../img/pagos.png'); }
+.sb-menu .sb-item:nth-child(4) .sb-ico { background-image: url('../img/catalogo.png'); }
+
+/* ---------- Pie del sidebar: solo Salir ---------- */
+.sb-user {
+  display: flex;
+  padding-top: .8rem;
+  border-top: 1px solid var(--border);
+}
+
+.sb-user #user-info,
+.sb-user #rol-badge {
+  display: none !important;
+}
+
+.sb-user .btn-logout {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ---------- Área de contenido principal (#0b1120) ---------- */
+.content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.top {
+  padding: .8rem 1.2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'Poppins', sans-serif;
+  font-size: .85rem;
+}
+
+.migas {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.migas strong {
+  color: var(--acento);
+  font-weight: 500;
+}
+
+/* ---------- Encabezado de sección con tamaño normal y división ---------- */
+.panel .section-head {
+  padding-bottom: .85rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel .section-head h1,
+.panel .section-head h2,
+.panel > h1,
+.panel > h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ---------- Bordes limpios y tipografía Poppins en botones/tarjetas ---------- */
+body.proveedor-theme .card,
+body.proveedor-theme .kpi,
+body.proveedor-theme .tile,
+body.proveedor-theme .modal {
+  border-radius: 12px;
+}
+
+body.proveedor-theme .btn,
+body.proveedor-theme .subtab,
+body.proveedor-theme input,
+body.proveedor-theme select {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 9px;
+}
+
+/* ---------- Responsivo tablets (RNF07) ---------- */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 64px minmax(0, 1fr); }
+  .sb-brand div, .sb-item span:not(.sb-ico), .sb-user span { display: none; }
+  .sb-brand, .sb-item { justify-content: center; padding-inline: 0; }
+}
