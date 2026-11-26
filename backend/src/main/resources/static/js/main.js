@@ -6,6 +6,7 @@ import { toast } from './ui.js';
 // (MESERO, COCINERO, REPARTIDOR). Un rol que no este en este mapa no entra a ninguna pagina.
 const PAGINAS = {
   ADMINISTRADOR: 'administrador.html',
+  COCINERO: 'cocinero.html',
   CAJERO: 'cajero.html',
   PROVEEDOR: 'proveedor.html'
 };

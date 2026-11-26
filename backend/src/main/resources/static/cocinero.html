@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoliRestaurante · Cocina</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cocina.css">
+</head>
+<body class="cocina-theme">
+  <div class="ck-app">
+    <header class="ck-header">
+      <div class="ck-brand">
+        <span class="ck-logo" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 19a5 5 0 0 1-3-9 5 5 0 0 1 5-6 6 6 0 0 1 11 2 5 5 0 0 1 4 9l-3 4v5H9z"/><path d="M9 24h14M9 28h14"/></svg></span>
+        <div><strong>PoliRestaurante</strong><small>Gestión de cocina</small></div>
+      </div>
+      <nav id="menu" class="ck-nav" role="tablist" aria-label="Módulos de cocina"></nav>
+      <div class="ck-session">
+        <span class="ck-user"><strong id="user-info"></strong><small id="rol-badge"></small></span>
+        <button id="logout" class="btn btn-ghost btn-sm">Salir</button>
+      </div>
+    </header>
+    <div class="ck-content">
+      <div class="ck-meta">
+        <div id="migas" class="ck-migas"></div>
+        <div class="ck-meta-right"><span id="fecha-hoy"></span><span id="ck-connection" class="ck-connection" role="status">Conectando…</span></div>
+      </div>
+      <main id="panel" class="ck-panel" aria-label="Gestión de cocina"></main>
+    </div>
+    <footer class="ck-footer"><span>PoliRestaurante · Cocina</span><span>Pedidos y disponibilidad compartidos con el restaurante</span></footer>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="print-area"></div>
+  <script type="module" src="js/views/cocina.js"></script>
+</body>
+</html>

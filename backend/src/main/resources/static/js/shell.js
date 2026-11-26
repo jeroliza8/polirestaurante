@@ -3,6 +3,7 @@
 import { state, setSession, clearSession, sesionVigente } from './state.js';
 import { post, onSessionExpired } from './api.js';
 import { esc, toast, limpiarIntervalos } from './ui.js';
+import { conectarEventosCocina } from './cocina-eventos.js';
 
 const $ = id => document.getElementById(id);
 const NOMBRE_ROL = { ADMINISTRADOR: 'Administrador', CAJERO: 'Cajero', PROVEEDOR: 'Proveedor' };
@@ -46,6 +47,15 @@ export function iniciarPagina({ rol, raiz, menu, inicial }) {
     item.render(panel);
   }
   abrir(inicial || menu[0].id);
+
+  // Observer de Cocina: no sustituye las vistas de los otros integrantes.
+  if (rol === 'MESERO' || rol === 'ADMINISTRADOR') {
+    conectarEventosCocina({ alEvento: evento => {
+      if (evento.tipo === 'PEDIDO_LISTO') toast(`Pedido #${evento.idPedido} listo para recoger.`);
+      if (evento.tipo === 'DISPONIBILIDAD_ACTUALIZADA') toast(`Producto #${evento.idProducto}: ${evento.disponible ? 'disponible' : 'agotado'}.`);
+      window.dispatchEvent(new CustomEvent('polirestaurante:cocina', { detail: evento }));
+    }});
+  }
 
   // ---------- RNF04: cierre por 30 min de inactividad + renovacion del token ----------
   let ultimaActividad = Date.now();

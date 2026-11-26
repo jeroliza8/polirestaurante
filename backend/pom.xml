@@ -35,6 +35,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- ADR-001: canal bidireccional de Cocina -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
         <!-- Tomcat lo provee el servidor (Apache Tomcat 10.1), no va dentro del WAR -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

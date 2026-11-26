@@ -42,6 +42,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
             .requestMatchers("/", "/*.html", "/css/**", "/js/**", "/img/**", "/favicon.ico", "/error").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+            // El socket autentica el primer frame antes de enviar datos; las APIs de Cocina son privadas.
+            .requestMatchers("/ws/cocina").permitAll()
+            .requestMatchers("/api/cocinero/**").hasRole("COCINERO")
             .requestMatchers("/api/admin/**").hasRole("ADMINISTRADOR")
             .requestMatchers("/api/cajero/**").hasRole("CAJERO")
             .requestMatchers("/api/proveedor/**").hasRole("PROVEEDOR")
