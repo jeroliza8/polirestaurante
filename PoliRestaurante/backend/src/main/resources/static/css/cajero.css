@@ -1,0 +1,28 @@
+/* PoliRestaurante - Cajero: menú lateral alineado con el mockup. Se carga después de styles.css. */
+:root { --acento: #22c55e; --acento-soft: rgba(34, 197, 94, .15); }
+.app { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 100vh; }
+.sidebar { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column;
+  background: var(--surface); border-right: 1px solid var(--border); padding: 1rem .7rem; }
+.sb-brand { display: flex; align-items: center; gap: .6rem; padding: .2rem .5rem 1.1rem; }
+.sb-brand .brand-mark { background: var(--acento); }
+.sb-brand small { display: block; color: var(--muted); font-size: .75rem; }
+.sb-menu { display: grid; gap: .2rem; align-content: start; flex: 1; overflow-y: auto; }
+.sb-item { display: flex; align-items: center; gap: .7rem; width: 100%; text-align: left; background: none;
+  border: 0; color: var(--muted); padding: .6rem .8rem; border-radius: 8px; cursor: pointer; font: inherit; }
+.sb-item:hover { color: var(--text); background: var(--surface-2); }
+.sb-item:focus-visible { outline: 2px solid var(--acento); }
+.sb-item.active { color: #fff; background: var(--acento-soft); box-shadow: inset 3px 0 0 var(--acento); }
+.sb-ico { width: 1.4rem; text-align: center; flex: none; }
+.sb-user { display: grid; gap: .4rem; padding-top: .8rem; border-top: 1px solid var(--border);
+  font-size: .85rem; color: var(--muted); justify-items: start; }
+.content { min-width: 0; display: flex; flex-direction: column; }
+.top { padding: .8rem 1.2rem; background: var(--surface); border-bottom: 1px solid var(--border);
+  color: var(--muted); font-size: .85rem; }
+.migas { width: 100%; max-width: 1400px; margin: 0 auto; padding: 1rem 1.2rem 0; font-size: .85rem; color: var(--muted); }
+.migas strong { color: var(--acento); font-weight: 500; }
+@media (max-width: 900px) {   /* RNF07: tablets, menu solo con iconos */
+  .app { grid-template-columns: 64px minmax(0, 1fr); }
+  .sb-brand div, .sb-item span:not(.sb-ico), .sb-user span { display: none; }
+  .sb-brand { justify-content: center; padding-inline: 0; }
+  .sb-item { justify-content: center; padding-inline: 0; }
+}

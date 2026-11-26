@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoliRestaurante · Cajero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cajero.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sb-brand"><span class="brand-mark">PR</span>
+        <div><strong>PoliRestaurante</strong><small>Panel de Caja</small></div></div>
+      <nav id="menu" class="sb-menu" role="tablist" aria-label="Menú principal"></nav>
+      <div class="sb-user"><span id="user-info"></span><span id="rol-badge" class="badge badge-blue"></span>
+        <button id="logout" class="btn btn-ghost btn-sm">Salir</button></div>
+    </aside>
+    <div class="content">
+      <header class="top"><span id="fecha-hoy"></span></header>
+      <div id="migas" class="migas"></div>
+      <main id="panel" class="panel"></main>
+    </div>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="print-area"></div>
+
+  <script type="module">
+    import { iniciarPagina } from "./js/shell.js";
+    import * as vista from "./js/views/cajero.js";
+
+    const iconos = { cuentas: "🧾", caja: "💵", facturas: "🧮" };
+    iniciarPagina({
+      rol: "CAJERO",
+      raiz: "Caja",
+      menu: vista.tabs.map(t => ({ ...t, icono: iconos[t.id] }))
+    });
+  </script>
+</body>
+</html>
