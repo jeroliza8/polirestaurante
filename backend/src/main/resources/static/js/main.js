@@ -2,14 +2,15 @@ import { state, setSession, clearSession, sesionVigente } from './state.js';
 import { api } from './api.js';
 import { toast } from './ui.js';
 
-// Pagina de cada rol. Cada equipo agrega aqui solo su linea cuando su modulo este listo
-// (MESERO, COCINERO, REPARTIDOR). Un rol que no este en este mapa no entra a ninguna pagina.
 const PAGINAS = {
   ADMINISTRADOR: 'administrador.html',
   COCINERO: 'cocinero.html',
+  COCINA: 'cocinero.html',
   CAJERO: 'cajero.html',
   PROVEEDOR: 'proveedor.html'
 };
+
+const normalizarRol = rol => String(rol || '').trim().toUpperCase().replace(/^ROLE_/, '');
 
 const $ = id => document.getElementById(id);
 
@@ -28,15 +29,21 @@ $('login-form').addEventListener('submit', async e => {
     const r = await api('/auth/login', { method: 'POST',
       body: { usuario: $('login-user').value.trim(), password: $('login-pass').value } });
     $('login-pass').value = '';
-    if (!PAGINAS[r.rol]) return;      // rol sin pagina: no se guarda sesion ni se redirige
-    setSession(r);
-    location.href = PAGINAS[r.rol];
+    const rol = normalizarRol(r.rol);
+    const destino = PAGINAS[rol];
+    if (!destino) {
+      $('login-msg').textContent = `Rol "${r.rol || 'sin rol'}" sin vista asignada.`;
+      return;
+    }
+    setSession({ ...r, rol });
+    location.href = destino;
   } catch (err) {
     $('login-msg').textContent = err.message;
   } finally { btn.disabled = false; }
 });
 
-if (sesionVigente() && PAGINAS[state.rol]) location.replace(PAGINAS[state.rol]);
+const rolGuardado = normalizarRol(state.rol);
+if (sesionVigente() && PAGINAS[rolGuardado]) location.replace(PAGINAS[rolGuardado]);
 else clearSession();
 
 window.addEventListener('unhandledrejection', e => { toast(e.reason?.message || 'Error inesperado', 'error'); });
