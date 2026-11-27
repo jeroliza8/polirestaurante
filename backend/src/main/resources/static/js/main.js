@@ -4,6 +4,7 @@ import { toast } from './ui.js';
 
 const PAGINAS = {
   ADMINISTRADOR: 'administrador.html',
+  MESERO: 'mesero.html',
   COCINERO: 'cocinero.html',
   COCINA: 'cocinero.html',
   CAJERO: 'cajero.html',

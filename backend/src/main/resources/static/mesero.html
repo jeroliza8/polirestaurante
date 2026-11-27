@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoliRestaurante · Mesero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mesero.css">
+</head>
+<body class="mesero-theme">
+  <div class="ms-app">
+    <header class="ms-header">
+      <div class="ms-brand"><strong>PoliRestaurante</strong><small>Servicio de salón</small></div>
+      <nav id="menu" class="ms-nav" role="tablist" aria-label="Módulos del mesero"></nav>
+      <div class="ms-session">
+        <span class="ms-user"><strong id="user-info"></strong><small id="rol-badge"></small></span>
+        <button id="logout" class="btn btn-ghost btn-sm">Salir</button>
+      </div>
+    </header>
+    <div class="ms-content">
+      <div class="ms-meta"><div id="migas"></div><span id="fecha-hoy"></span></div>
+      <main id="panel" class="ms-panel" aria-label="Gestión de mesero"></main>
+    </div>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="print-area"></div>
+  <script type="module" src="js/views/mesero.js"></script>
+</body>
+</html>

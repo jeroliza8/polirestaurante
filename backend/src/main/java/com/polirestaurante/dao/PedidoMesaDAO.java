@@ -22,4 +22,9 @@ public interface PedidoMesaDAO extends JpaRepository<PedidoMesa, Integer> {
     @Query("select distinct pm.mesaId from PedidoMesa pm, Pedido p "
          + "where p.idPedido = pm.pedidoId and p.estado not in :cerrados")
     List<Integer> mesasConPedidoActivo(@Param("cerrados") Collection<EstadoPedido> cerrados);
+
+    /** Mesero: vínculos mesa-pedido de las cuentas abiertas (para mostrar qué mesa tiene qué cuenta). */
+    @Query("select pm from PedidoMesa pm, Pedido p "
+         + "where p.idPedido = pm.pedidoId and p.estado not in :cerrados")
+    List<PedidoMesa> vinculosConPedidoActivo(@Param("cerrados") Collection<EstadoPedido> cerrados);
 }

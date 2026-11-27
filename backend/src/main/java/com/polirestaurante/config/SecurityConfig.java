@@ -46,6 +46,7 @@ public class SecurityConfig {
             .requestMatchers("/ws/cocina").permitAll()
             .requestMatchers("/api/cocinero/**").hasRole("COCINERO")
             .requestMatchers("/api/admin/**").hasRole("ADMINISTRADOR")
+            .requestMatchers("/api/mesero/**").hasRole("MESERO")
             .requestMatchers("/api/cajero/**").hasRole("CAJERO")
             .requestMatchers("/api/proveedor/**").hasRole("PROVEEDOR")
             .anyRequest().authenticated())

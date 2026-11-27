@@ -31,6 +31,9 @@ public interface PedidoDAO extends JpaRepository<Pedido, Integer> {
     @Query("select p from Pedido p where p.idPedido = :id")
     Optional<Pedido> bloquearPorId(@Param("id") Integer id);
 
+    /** RF05: pedidos del mesero, los más recientes primero. */
+    List<Pedido> findByMeseroIdOrderByFechaCreacionDesc(Integer meseroId);
+
     boolean existsByMeseroId(Integer meseroId);
     boolean existsByRepartidorId(Integer repartidorId);
 }

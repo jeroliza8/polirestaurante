@@ -57,7 +57,7 @@ No se necesita instalar MySQL para subir los fuentes ni ejecutar las pruebas uni
 
 ## Integración con Mesero y Administración
 
-La rama de referencia todavía no contiene `MeseroController` ni `mesero.html`. Por tanto no se implementa su interfaz, ni se crean pedidos desde Cocina.
+El módulo Mesero ya está integrado (`MeseroController`, `mesero.html`; ver `docs/MESERO.md`). Cocina sigue sin crear pedidos.
 
 - La conexión autenticada `/ws/cocina` admite COCINERO, MESERO y ADMINISTRADOR, sin credenciales en URL. El navegador envía el JWT en el primer frame (`{"tipo":"AUTENTICAR","token":"..."}`). Se verifica expiración, usuario activo y rol real. El socket se reconecta y renueva su token desde el `state.js` existente.
 - Se reutiliza `shell.js` con un cambio mínimo: Mesero y Administración reciben avisos de Cocina y un evento DOM `polirestaurante:cocina`. El aviso `PEDIDO_LISTO` solo llega al mesero que tiene ese pedido. Administración recibe disponibilidad, sin exponer sus pantallas al rol Cocina.

@@ -6,7 +6,7 @@ import { esc, toast, limpiarIntervalos } from './ui.js';
 import { conectarEventosCocina } from './cocina-eventos.js';
 
 const $ = id => document.getElementById(id);
-const NOMBRE_ROL = { ADMINISTRADOR: 'Administrador', CAJERO: 'Cajero', PROVEEDOR: 'Proveedor' };
+const NOMBRE_ROL = { ADMINISTRADOR: 'Administrador', CAJERO: 'Cajero', MESERO: 'Mesero', PROVEEDOR: 'Proveedor' };
 
 // Para opciones del menu que aun no tienen vista detras
 export const moduloPendiente = titulo => panel => {

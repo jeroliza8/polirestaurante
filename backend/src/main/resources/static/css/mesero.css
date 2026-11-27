@@ -1,0 +1,70 @@
+/* Mesero · estilos aislados; reutiliza las variables y componentes de styles.css. */
+.mesero-theme { min-width: 320px; }
+.ms-app { min-height: 100vh; display: flex; flex-direction: column; }
+.ms-header { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: .7rem 1.5rem;
+  background: var(--surface); border-bottom: 1px solid var(--border); }
+.ms-brand strong, .ms-brand small, .ms-user strong, .ms-user small { display: block; }
+.ms-brand small, .ms-user small { color: var(--muted); font-size: .8rem; }
+.ms-nav { display: flex; gap: .3rem; flex-wrap: wrap; }
+.ms-nav .sb-item { display: flex; align-items: center; gap: .5rem; width: auto; padding: .5rem .9rem; border-radius: 8px;
+  border: 1px solid transparent; background: transparent; color: var(--muted); font: inherit; cursor: pointer; }
+.ms-nav .sb-item:hover { color: var(--text); background: var(--surface-2); }
+.ms-nav .sb-item.active { color: #fff; background: var(--blue-soft); border-color: var(--blue); }
+.ms-session { margin-left: auto; display: flex; align-items: center; gap: 1rem; text-align: right; }
+.ms-content { width: 100%; max-width: 1400px; margin: 0 auto; padding: 1rem 1.5rem 2rem; flex: 1; }
+.ms-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .85rem; margin-bottom: 1rem; }
+.ms-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.ms-head h1 { font-size: 1.4rem; margin: 0 0 .2rem; }
+.ms-head p { margin: 0; color: var(--muted); }
+.ms-error { background: var(--red-soft); border: 1px solid var(--red); color: #fecaca; padding: .6rem .9rem; border-radius: 8px; margin-bottom: 1rem; }
+
+/* Mesas */
+.ms-mesas { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
+.ms-mesa { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; display: grid; gap: .6rem; }
+.ms-mesa.libre { border-top: 3px solid var(--green); }
+.ms-mesa.ocupada { border-top: 3px solid var(--amber); }
+.ms-mesa header { display: flex; justify-content: space-between; align-items: center; }
+.ms-mesa h3 { margin: 0; font-size: 1.15rem; }
+.ms-mesa-info { color: var(--muted); font-size: .85rem; min-height: 2.4em; }
+.ms-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+/* Nuevo pedido */
+.ms-pedido-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr); gap: 1rem; align-items: start; }
+.ms-toolbar { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: .8rem; }
+.ms-toolbar input, .ms-toolbar select, .ms-card input, .ms-card select, .ms-card textarea, .ms-modal-add input, .ms-modal-add select {
+  background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 7px; padding: .5rem .65rem; font: inherit; min-width: 0; }
+.ms-toolbar input { flex: 1 1 200px; }
+.ms-categoria { margin: 1rem 0 .4rem; color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; }
+.ms-menu { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .7rem; }
+.ms-prod { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: .75rem; display: grid; gap: .3rem; }
+.ms-prod strong { font-size: .98rem; }
+.ms-prod small { color: var(--muted); }
+.ms-prod-foot { display: flex; justify-content: space-between; align-items: center; margin-top: .3rem; }
+.ms-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+.ms-carrito { position: sticky; top: 1rem; display: grid; gap: .8rem; }
+.ms-linea { display: grid; gap: .35rem; padding: .6rem 0; border-bottom: 1px solid var(--border); }
+.ms-linea-top { display: flex; justify-content: space-between; gap: .5rem; }
+.ms-qty { display: flex; align-items: center; gap: .4rem; }
+.ms-qty span { min-width: 2ch; text-align: center; font-weight: 600; }
+.ms-linea input { width: 100%; }
+.ms-total { display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; }
+
+/* Mis pedidos */
+.ms-pedidos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+.ms-ticket { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; display: grid; gap: .6rem; }
+.ms-ticket.listo { border-color: var(--green); box-shadow: 0 0 0 1px var(--green) inset; }
+.ms-ticket header { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+.ms-ticket ul, .ms-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
+.ms-ticket li, .ms-lista li { display: flex; justify-content: space-between; gap: .6rem; font-size: .92rem; }
+.ms-anulada { text-decoration: line-through; color: var(--muted); }
+.ms-nota { color: var(--muted); font-size: .8rem; display: block; }
+.ms-modal-add { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.ms-modal-add select { flex: 1 1 200px; }
+.ms-modal-add input { width: 5.5rem; }
+
+@media (max-width: 900px) {
+  .ms-pedido-grid { grid-template-columns: 1fr; }
+  .ms-carrito { position: static; }
+  .ms-header { padding: .6rem 1rem; }
+  .ms-content { padding: 1rem; }
+}
